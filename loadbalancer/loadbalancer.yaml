@@ -1,8 +1,8 @@
 hosts:
   - host: www.food.com
     servers:
-      - localhost:9081
-      - localhost:9082
-      - localhost:9083
-      - localhost:9084
-      - localhost:9085
+      - orange:8080
+      - banana:8080
+      - strawberry:8080
+      - apple:8080
+      - mango:8080

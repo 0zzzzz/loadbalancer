@@ -7,3 +7,7 @@ curl localhost:8081
 
 python -m pytest 
 make test      
+
+pip install uwsgitop    
+
+uwsgitop http://127.0.0.1:9881 

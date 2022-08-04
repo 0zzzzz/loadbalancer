@@ -1,5 +1,0 @@
-pytest
-Flask
-requests
-pyyaml
-responses

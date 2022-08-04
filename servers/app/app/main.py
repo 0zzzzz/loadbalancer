@@ -1,23 +1,24 @@
 import os
-# import logging
+from time import sleep
+
 from flask import Flask
 
 app = Flask(__name__)
 
-# logger = logging.getLogger('serverLogger')
-# fileHangler = logging.FileHandler(f'{os.environ["APP"]}_server.log')
-# i = 0
 
 @app.route('/')
 def home():
+    """Тестовый вебсервис"""
+    # sleep(1)
     print(f'111111111111111111111111111111111')
     return f'Server: {os.environ["APP"]}'
 
 
 @app.route('/healthcheck')
 def healthcheck():
+    """Страница проверки доступности сервера"""
     return "OK"
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host="0.0.0.0", debug=True)

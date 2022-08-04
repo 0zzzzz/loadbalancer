@@ -1,38 +1,79 @@
 version: '3'
 services:
   mango:
-    image: server
+    container_name: mango
+    build: ./servers
+    volumes:
+      - ./servers/statistics/mango:/tmp
     environment:
       - APP=mango
     ports:
-      - "9081:5000"
+      - "9081:8080"
+      - "9881:8081"
   banana:
-    image: server
+    container_name: banana
+    build: ./servers
+    volumes:
+      - ./servers/statistics/banana:/tmp
     environment:
       - APP=banana
     ports:
-      - "9082:5000"
+      - "9082:8080"
+      - "9882:8081"
   apple:
-    image: server
+    container_name: apple
+    build: ./servers
+    volumes:
+      - ./servers/statistics/apple:/tmp
     environment:
       - APP=apple
     ports:
-      - "9083:5000"
+      - "9083:8080"
+      - "9883:8081"
   strawberry:
-    image: server
+    container_name: strawberry
+    build: ./servers
+    volumes:
+      - ./servers/statistics/strawberry:/tmp
     environment:
       - APP=strawberry
     ports:
-      - "9084:5000"
+      - "9084:8080"
+      - "9884:8081"
   orange:
-    image: server
+    container_name: orange
+    build: ./servers
+    volumes:
+      - ./servers/statistics/orange:/tmp
     environment:
       - APP=orange
     ports:
-      - "9085:5000"
-  loadbalacer:
-    image: server
+      - "9085:8080"
+      - "9885:8081"
+#  loadbalacer:
+#    image: server
+#    build: ./loadbalancer
+#    command: python3 loadbalancer.py
+#    ports:
+#      - "8020:5000"
+  flask:
+    # Путь до Dockerfile
     build: ./loadbalancer
-    command: python3 loadbalancer.py
+    # Имя для создаваемого контейнера
+    container_name: loadbalancer
+    # Создание переменных окружения в контейнере
+    environment:
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=True
+#    restart: on-failure
+    depends_on:
+      - orange
+      - banana
+      - strawberry
+      - apple
+      - mango
+    volumes:
+      - ./loadbalancer:/loadbalancer
     ports:
-      - "8020:5000"
+      - "5000:5000"
+    command: python3 loadbalancer.py
