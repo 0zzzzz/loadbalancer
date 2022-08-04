@@ -1,0 +1,9 @@
+sudo docker build -t server .
+
+sudo docker-compose up -d  
+docker-compose down
+
+curl localhost:8081
+
+python -m pytest 
+make test      

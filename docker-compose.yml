@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mango:
+    image: server
+    environment:
+      - APP=mango
+    ports:
+      - "9081:5000"
+  banana:
+    image: server
+    environment:
+      - APP=banana
+    ports:
+      - "9082:5000"
+  apple:
+    image: server
+    environment:
+      - APP=apple
+    ports:
+      - "9083:5000"
+  strawberry:
+    image: server
+    environment:
+      - APP=strawberry
+    ports:
+      - "9084:5000"
+  orange:
+    image: server
+    environment:
+      - APP=orange
+    ports:
+      - "9085:5000"
+  loadbalacer:
+    image: server
+    build: ./loadbalancer
+    command: python3 loadbalancer.py
+    ports:
+      - "8020:5000"
