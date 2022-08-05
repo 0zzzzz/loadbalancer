@@ -3,12 +3,10 @@ from flask import Flask
 from utils import load_configuration, transform_backends_from_config, get_healthy_server, healthcheck
 
 
-
 loadbalancer = Flask(__name__)
 
 config = load_configuration('loadbalancer.yaml')
 register = transform_backends_from_config(config)
-
 
 @loadbalancer.route('/')
 def router():

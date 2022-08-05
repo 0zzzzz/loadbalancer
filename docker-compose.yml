@@ -50,22 +50,12 @@ services:
     ports:
       - "9085:8080"
       - "9885:8081"
-#  loadbalacer:
-#    image: server
-#    build: ./loadbalancer
-#    command: python3 loadbalancer.py
-#    ports:
-#      - "8020:5000"
   flask:
-    # Путь до Dockerfile
     build: ./loadbalancer
-    # Имя для создаваемого контейнера
     container_name: loadbalancer
-    # Создание переменных окружения в контейнере
     environment:
       - FLASK_ENV=development
       - PYTHONUNBUFFERED=True
-#    restart: on-failure
     depends_on:
       - orange
       - banana
