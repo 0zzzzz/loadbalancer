@@ -9,8 +9,6 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     """Тестовый вебсервис"""
-    # sleep(1)
-    print(f'111111111111111111111111111111111')
     return f'Server: {os.environ["APP"]}'
 
 
